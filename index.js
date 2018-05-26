@@ -1,3 +1,16 @@
+String.prototype.format = function () {
+    var a = this;
+    for (var k in arguments) {
+        a = a.replace(new RegExp("\\{" + k + "\\}", 'g'), arguments[k]);
+    }
+    return a
+}
+
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+
+url = 'https://{0}/sts_sci_md00_001.do?schulCode={1}&schulCrseScCode={2}&schulKndScScore=0{3}&schYm={4}{5}'
 class SchoolAPI {
 }
 
