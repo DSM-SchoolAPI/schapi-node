@@ -1,3 +1,6 @@
+const request = require('request')
+const JSSoup = require('jssoup').default
+
 String.prototype.format = function () {
     var a = this;
     for (var k in arguments) {
@@ -20,6 +23,16 @@ class SchoolAPI {
         if(!type) {
             this.type = this.constructor.Type.HIGH
         }
+    }
+
+    getFormattedURL(year, month) {
+        return url.format(this.region, this.schoolCode, this.type, this.type, year, pad(month))
+    }
+
+    getMonthlyMenus(year, month) {
+        request(this.getFormattedURL(year, month), (error, response, body) =>{
+            const soup = new JSSoup(body)
+        })
     }
 }
 
