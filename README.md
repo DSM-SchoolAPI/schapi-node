@@ -5,7 +5,7 @@ Node.JS 기반의 급식, 학사일정 파싱 라이브러리입니다.
 
 ## 1. 설치  
 
-schapi-node 는 GOPATH의 프로젝트에 다음과 같이 설치할 수 있습니다.  
+schapi-node 는 프로젝트에 다음과 같이 설치할 수 있습니다.  
 
 ```
 npm install schapi
