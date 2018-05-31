@@ -58,7 +58,6 @@ class SchoolAPI {
     getMenuFromData(data) {
         let menu = {}
         let timing = -1
-
         let matches = data.match(/[가-힣]+\([가-힣]+\)|[가-힣]+/g);
 
         if (matches) {

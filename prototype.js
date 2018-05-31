@@ -6,7 +6,7 @@ String.prototype.format = function (...params) {
     })
 
     return text
-};
+}
 
 Number.prototype.pad = function () {
     let value = this;
