@@ -1,5 +1,6 @@
 const cheerio = require('cheerio')
-const request = require('sync-request')
+const request = require('request')
+const syncRequest = require('sync-request');
 const prototype = require('./prototype')
 
 const url = 'https://{0}/sts_sci_md00_001.do?schulCode={1}&schulCrseScCode={2}&schulKndScScore=0{3}&schYm={4}{5}'
@@ -21,10 +22,23 @@ class SchoolAPI {
 
     getMonthlyMenus(year, month) {
         let menus;
-        let resp = request('GET', this.getFormattedURL(year, month))
+        let resp = syncRequest('GET', this.getFormattedURL(year, month))
 
-        let $ = cheerio.load(resp.getBody('utf-8'));
-        return this.getMenusFromCheerio($);
+        let $ = cheerio.load(resp.getBody('utf-8'))
+        return this.getMenusFromCheerio($)
+    }
+
+    getMonthlyMenusAsync(year, month) {
+        return new Promise ((resolve, reject) => {
+            request.get(this.getFormattedURL(year, month), (error, resp, body) => {
+                if (error) {
+                    return reject(error)
+                }
+    
+                let $ = cheerio.load(body)
+                return resolve(this.getMenusFromCheerio($))
+            })
+        })
     }
 
     getMenusFromCheerio($) {
