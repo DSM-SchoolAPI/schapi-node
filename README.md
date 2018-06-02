@@ -24,7 +24,7 @@ let api = new SchoolAPI(SchoolAPI.Region.DAEJEON, "G100000170", SchoolAPI.Type.H
 console.log(api.getMonthlyMenus(2018, 5)[23].lunch)
 
 // Async
-api.getMonthlyMenus(2018, 5)
+api.getMonthlyMenusAsync(2018, 5)
     .then(menus => console.log(menus[23].lunch))
     .catch(error => console.error(error))
 ```
